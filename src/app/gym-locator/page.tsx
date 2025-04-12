@@ -1,3 +1,4 @@
+import SidebarLayout from "@/components/SidebarLayout";
 
 "use client";
 
@@ -38,29 +39,31 @@ export default function GymLocatorPage() {
   }, [userLocation]);
 
   return (
-    <div className="container mx-auto py-10">
-      <Card className="w-full max-w-4xl mx-auto">
-        <CardHeader className="flex flex-row items-center space-y-0 pb-2">
-          <CardTitle className="text-2xl font-bold">Gym Locator</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div style={{ height: '400px', width: '100%', backgroundColor: 'gray' }}>
-            {/* Placeholder for Map */}
-            Map will be displayed here
-          </div>
-          {gyms.length > 0 ? (
-            <ul>
-              {gyms.map((gym, index) => (
-                <li key={index}>
-                  {gym.name} - Latitude: {gym.location.lat}, Longitude: {gym.location.lng}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No gyms found nearby.</p>
-          )}
-        </CardContent>
-      </Card>
-    </div>
+    <SidebarLayout>
+      <div className="container mx-auto py-10">
+        <Card className="w-full max-w-4xl mx-auto">
+          <CardHeader className="flex flex-row items-center space-y-0 pb-2">
+            <CardTitle className="text-2xl font-bold">Gym Locator</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div style={{ height: '400px', width: '100%', backgroundColor: 'gray' }}>
+              {/* Placeholder for Map */}
+              Map will be displayed here
+            </div>
+            {gyms.length > 0 ? (
+              <ul>
+                {gyms.map((gym, index) => (
+                  <li key={index}>
+                    {gym.name} - Latitude: {gym.location.lat}, Longitude: {gym.location.lng}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No gyms found nearby.</p>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    </SidebarLayout>
   );
 }

@@ -1,3 +1,5 @@
+import SidebarLayout from "@/components/SidebarLayout";
+
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,51 +28,53 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="container mx-auto py-10">
-      <Card className="w-full max-w-md mx-auto">
-        <CardHeader className="flex flex-col items-center space-y-2">
-          <CardTitle className="text-2xl font-bold">Login</CardTitle>
-          <p className="text-sm text-muted-foreground">
-            Enter your email and password to access your account
-          </p>
-          {/* Add cursed energy symbols or character silhouettes here */}
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+    <SidebarLayout>
+      <div className="container mx-auto py-10">
+        <Card className="w-full max-w-md mx-auto">
+          <CardHeader className="flex flex-col items-center space-y-2">
+            <CardTitle className="text-2xl font-bold">Login</CardTitle>
+            <p className="text-sm text-muted-foreground">
+              Enter your email and password to access your account
+            </p>
+            {/* Add cursed energy symbols or character silhouettes here */}
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  type="password"
+                  id="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <Button type="submit" className="w-full">
+                Sign In
+              </Button>
+            </form>
+            <div className="flex justify-center text-muted-foreground">
+              Or sign in with
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                type="password"
-                id="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+            <div className="flex justify-center space-x-4">
+              <Button variant="outline">Google</Button>
+              <Button variant="outline">Facebook</Button>
+              {/* Add social media integration buttons here */}
             </div>
-            <Button type="submit" className="w-full">
-              Sign In
-            </Button>
-          </form>
-          <div className="flex justify-center text-muted-foreground">
-            Or sign in with
-          </div>
-          <div className="flex justify-center space-x-4">
-            <Button variant="outline">Google</Button>
-            <Button variant="outline">Facebook</Button>
-            {/* Add social media integration buttons here */}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+          </CardContent>
+        </Card>
+      </div>
+    </SidebarLayout>
   );
 }

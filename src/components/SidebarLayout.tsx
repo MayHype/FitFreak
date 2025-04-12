@@ -1,14 +1,21 @@
 import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
 import Link from 'next/link';
+import {useEffect, useState} from "react";
 
 interface SidebarLayoutProps {
   children: React.ReactNode;
 }
 
 const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
   return (
     <SidebarProvider>
-      <div className="flex">
+      <div className="flex fade-in">
         <Sidebar collapsible="icon">
           <SidebarContent>
             <SidebarMenu>
@@ -50,7 +57,7 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
             </SidebarMenu>
           </SidebarContent>
         </Sidebar>
-        {children}
+        {isMounted ? <div className="fade-in">{children}</div> : null}
       </div>
     </SidebarProvider>
   );

@@ -126,7 +126,9 @@ export default function MealPage() {
                                         <FormItem>
                                             <FormLabel>Weight (kg)</FormLabel>
                                             <FormControl>
-                                                <Input type="number" placeholder="Enter your weight" {...field} />
+                                                <Input type="number" placeholder="Enter your weight"  {...field}  value={field.value === 0 ? '' : field.value} onChange={(e) => {
+                                                    field.onChange(Number(e.target.value));
+                                                }}/>
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -139,7 +141,9 @@ export default function MealPage() {
                                         <FormItem>
                                             <FormLabel>Height (cm)</FormLabel>
                                             <FormControl>
-                                                <Input type="number" placeholder="Enter your height" {...field} />
+                                                <Input type="number" placeholder="Enter your height" {...field} value={field.value === 0 ? '' : field.value} onChange={(e) => {
+                                                    field.onChange(Number(e.target.value));
+                                                }}/>
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -152,7 +156,9 @@ export default function MealPage() {
                                         <FormItem>
                                             <FormLabel>Age</FormLabel>
                                             <FormControl>
-                                                <Input type="number" placeholder="Enter your age" {...field} />
+                                                <Input type="number" placeholder="Enter your age" {...field} value={field.value === 0 ? '' : field.value} onChange={(e) => {
+                                                    field.onChange(Number(e.target.value));
+                                                }}/>
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>

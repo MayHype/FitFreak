@@ -108,7 +108,9 @@ export default function WorkoutPage() {
                                         <FormItem>
                                             <FormLabel>Weight (kg)</FormLabel>
                                             <FormControl>
-                                                <Input type="number" placeholder="Enter your weight" {...field} />
+                                                <Input type="number" placeholder="Enter your weight"  {...field}  value={field.value === 0 ? '' : field.value} onChange={(e) => {
+                                                    field.onChange(Number(e.target.value));
+                                                }}/>
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -121,7 +123,9 @@ export default function WorkoutPage() {
                                         <FormItem>
                                             <FormLabel>Height (cm)</FormLabel>
                                             <FormControl>
-                                                <Input type="number" placeholder="Enter your height" {...field} />
+                                                <Input type="number" placeholder="Enter your height" {...field} value={field.value === 0 ? '' : field.value} onChange={(e) => {
+                                                    field.onChange(Number(e.target.value));
+                                                }}/>
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>

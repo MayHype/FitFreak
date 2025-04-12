@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import {generateMealPlan, GenerateMealPlanInput, GenerateMealPlanOutput} from '@/ai/flows/generate-meal-plan';
+import { useToast } from "@/hooks/use-toast";
 
 export default function MealPage() {
   const [mealPlan, setMealPlan] = useState<string | null>(null);
@@ -22,11 +23,15 @@ export default function MealPage() {
     activityLevel: "sedentary",
   });
 
+  const { toast } = useToast();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
-    setFormData((prevData) => ({
+    // Convert weight and height to numbers
+    const parsedValue = (id === 'weight' || id === 'height' || id === 'age') ? Number(value) : value;
+    setFormData(prevData => ({
       ...prevData,
-      [id]: value,
+      [id]: parsedValue,
     }));
   };
 
@@ -35,9 +40,18 @@ export default function MealPage() {
     try {
       const mealPlanResult: GenerateMealPlanOutput = await generateMealPlan(formData);
       setMealPlan(mealPlanResult.mealPlan);
+      toast({
+        title: "Meal plan generated",
+        description: "Your personalized meal plan is ready!",
+      });
     } catch (error) {
       console.error("Error generating meal plan:", error);
       setMealPlan("Failed to generate meal plan. Please try again.");
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to generate meal plan. Please try again.",
+      });
     }
   };
 

@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react";
 import {generateMealPlan, GenerateMealPlanInput, GenerateMealPlanOutput} from '@/ai/flows/generate-meal-plan';
 import { useToast } from "@/hooks/use-toast";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function MealPage() {
   const [mealPlan, setMealPlan] = useState<string | null>(null);
@@ -22,7 +23,7 @@ export default function MealPage() {
     gender: "male",
     activityLevel: "sedentary",
   });
-
+    const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -36,7 +37,8 @@ export default function MealPage() {
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+      event.preventDefault();
+      setIsLoading(true);
     try {
       const mealPlanResult: GenerateMealPlanOutput = await generateMealPlan(formData);
       setMealPlan(mealPlanResult.mealPlan);
@@ -52,6 +54,8 @@ export default function MealPage() {
         title: "Error",
         description: "Failed to generate meal plan. Please try again.",
       });
+    } finally {
+        setIsLoading(false);
     }
   };
 
@@ -60,11 +64,11 @@ export default function MealPage() {
       <div className="container mx-auto py-10">
         <Card className="w-full max-w-2xl mx-auto">
           <CardHeader className="flex flex-row items-center space-y-0 pb-2">
-            <CardTitle className="text-2xl font-bold">Meal Plan Generator</CardTitle>
+            <CardTitle className="text-2xl font-bold hero-animate">Meal Plan Generator</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="grid gap-4">
-              <div className="grid gap-2">
+              <div className="grid gap-2 hero-animate">
                 <Label htmlFor="dietaryPreferences">Dietary Preferences</Label>
                 <Input
                   type="text"
@@ -74,7 +78,7 @@ export default function MealPage() {
                   onChange={handleChange as any}
                 />
               </div>
-              <div className="grid gap-2">
+              <div className="grid gap-2 hero-animate">
                 <Label htmlFor="fitnessGoals">Fitness Goals</Label>
                 <Input
                   type="text"
@@ -84,7 +88,7 @@ export default function MealPage() {
                   onChange={handleChange as any}
                 />
               </div>
-              <div className="grid gap-2">
+              <div className="grid gap-2 hero-animate">
                 <Label htmlFor="weight">Weight (kg)</Label>
                 <Input
                   type="number"
@@ -94,7 +98,7 @@ export default function MealPage() {
                   onChange={handleChange as any}
                 />
               </div>
-              <div className="grid gap-2">
+              <div className="grid gap-2 hero-animate">
                 <Label htmlFor="height">Height (cm)</Label>
                 <Input
                   type="number"
@@ -104,7 +108,7 @@ export default function MealPage() {
                   onChange={handleChange as any}
                 />
               </div>
-              <div className="grid gap-2">
+              <div className="grid gap-2 hero-animate">
                 <Label htmlFor="age">Age</Label>
                 <Input
                   type="number"
@@ -114,7 +118,7 @@ export default function MealPage() {
                   onChange={handleChange as any}
                 />
               </div>
-              <div className="grid gap-2">
+              <div className="grid gap-2 hero-animate">
                 <Label htmlFor="gender">Gender</Label>
                 <Select value={formData.gender} onValueChange={(value) => setFormData({ ...formData, gender: value as any })}>
                   <SelectTrigger id="gender">
@@ -126,7 +130,7 @@ export default function MealPage() {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="grid gap-2">
+              <div className="grid gap-2 hero-animate">
                 <Label htmlFor="activityLevel">Activity Level</Label>
                 <Select value={formData.activityLevel} onValueChange={(value) => setFormData({ ...formData, activityLevel: value as any })}>
                   <SelectTrigger id="activityLevel">
@@ -141,14 +145,19 @@ export default function MealPage() {
                   </SelectContent>
                 </Select>
               </div>
-              <Button type="submit">Generate Meal Plan</Button>
+              <Button type="submit" disabled={isLoading}>Generate Meal Plan</Button>
             </form>
-            {mealPlan && (
-              <div className="mt-4">
+              {isLoading ? (
+                  <div className="mt-4">
+                      <h3 className="text-md font-semibold">Generating Meal Plan:</h3>
+                      <Skeleton className="h-20 w-full" />
+                  </div>
+              ) : (mealPlan && (
+              <div className="mt-4 transition-opacity duration-500">
                 <h3 className="text-md font-semibold">Generated Meal Plan:</h3>
                 <p>{mealPlan}</p>
               </div>
-            )}
+            ))}
           </CardContent>
         </Card>
       </div>

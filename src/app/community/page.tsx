@@ -31,7 +31,7 @@ export default function CommunityPage() {
       <div className="container mx-auto py-10">
         <Card className="w-full max-w-4xl mx-auto">
           <CardHeader className="flex flex-row items-center space-y-0 pb-2">
-            <CardTitle className="text-2xl font-bold">Community Briefings</CardTitle>
+            <CardTitle className="text-2xl font-bold transition-opacity duration-500">Community Briefings</CardTitle>
           </CardHeader>
           <CardContent>
             <p>Interactive forums and real-time chat channels (themed as 'sorcerer briefings') where users can share tips, experiences, and motivation.</p>

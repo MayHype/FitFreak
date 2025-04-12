@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react";
 import {generateWorkoutPlan, GenerateWorkoutPlanInput, GenerateWorkoutPlanOutput} from '@/ai/flows/generate-workout-plan';
 import { useToast } from "@/hooks/use-toast";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function WorkoutPage() {
   const [workoutPlan, setWorkoutPlan] = useState<string | null>(null);
@@ -18,6 +19,7 @@ export default function WorkoutPage() {
     weight: 0,
     height: 0,
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const { toast } = useToast();
 
@@ -34,6 +36,7 @@ export default function WorkoutPage() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setIsLoading(true);
     try {
       const workoutPlanResult: GenerateWorkoutPlanOutput = await generateWorkoutPlan(formData);
       setWorkoutPlan(workoutPlanResult.workoutPlan);
@@ -49,6 +52,8 @@ export default function WorkoutPage() {
         title: "Error",
         description: "Failed to generate workout plan. Please try again.",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -94,14 +99,21 @@ export default function WorkoutPage() {
                   onChange={handleChange}
                 />
               </div>
-              <Button type="submit">Generate Workout Plan</Button>
+              <Button type="submit" disabled={isLoading}>
+                Generate Workout Plan
+              </Button>
             </form>
-            {workoutPlan && (
-              <div className="mt-4">
+            {isLoading ? (
+                <div className="mt-4">
+                  <h3 className="text-md font-semibold">Generating Workout Plan:</h3>
+                  <Skeleton className="h-20 w-full" />
+                </div>
+              ) : (workoutPlan && (
+              <div className="mt-4 transition-opacity duration-500">
                 <h3 className="text-md font-semibold">Generated Workout Plan:</h3>
                 <p>{workoutPlan}</p>
               </div>
-            )}
+            ))}
           </CardContent>
         </Card>
       </div>

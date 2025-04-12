@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Location, getNearbyGyms } from "@/services/gym-locator";
 import { useToast } from "@/hooks/use-toast";
+import { Icons } from "@/components/icons";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function GymLocatorPage() {
   const [userLocation, setUserLocation] = useState<Location | null>(null);
@@ -79,8 +81,18 @@ export default function GymLocatorPage() {
             <CardTitle className="text-2xl font-bold">Gym Locator</CardTitle>
           </CardHeader>
           <CardContent>
-            {loading && <p>Loading...</p>}
-            {error && <p className="text-red-500">{error}</p>}
+            {loading && (
+              <p>
+                Loading <Icons.spinner className="inline-block animate-spin" />
+              </p>
+            )}
+            {error && (
+                <Alert variant="destructive">
+                  <Icons.close className="h-4 w-4" />
+                  <AlertTitle>Error</AlertTitle>
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
             {userLocation && (
               <div className="w-full aspect-video rounded-md overflow-hidden">
                 <iframe
@@ -96,7 +108,7 @@ export default function GymLocatorPage() {
             )}
 
             {gyms.length > 0 ? (
-              <ul className="mt-4 space-y-2">
+              <ul className="mt-4 space-y-2 transition-opacity duration-500">
                 {gyms.map((gym, index) => (
                   <li key={index} className="p-4 border rounded-md">
                     <h3 className="font-semibold">{gym.name}</h3>

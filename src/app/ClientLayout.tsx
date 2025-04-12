@@ -14,7 +14,7 @@ const ClientLayout: React.FC<ClientLayoutProps> = ({
   geistMonoVariable,
 }) => {
   return (
-      {children}
+    <>{children}</>
   );
 };
 

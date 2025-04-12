@@ -28,13 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       <ClientLayout geistSansVariable={geistSans.variable} geistMonoVariable={geistMono.variable}>
-        <body>
-          <SidebarLayout>
-            {children}
-            <Toaster/>
-          </SidebarLayout>
-        </body>
+        <SidebarLayout>
+          {children}
+          <Toaster/>
+        </SidebarLayout>
       </ClientLayout>
     </html>
   );
 }
+

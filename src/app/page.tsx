@@ -32,22 +32,34 @@ export default function Home() {
           <SidebarContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton href="/">Dashboard</SidebarMenuButton>
+                <Link href="/">
+                  <SidebarMenuButton>Dashboard</SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton href="/profile">Profile</SidebarMenuButton>
+                <Link href="/profile">
+                  <SidebarMenuButton>Profile</SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton href="/workout">Workout Plan</SidebarMenuButton>
+               <Link href="/workout">
+                <SidebarMenuButton>Workout Plan</SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton href="/meal">Meal Plan</SidebarMenuButton>
+                <Link href="/meal">
+                  <SidebarMenuButton>Meal Plan</SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton href="/community">Community</SidebarMenuButton>
+                <Link href="/community">
+                  <SidebarMenuButton>Community</SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton href="/gym-locator">Gym Locator</SidebarMenuButton>
+                <Link href="/gym-locator">
+                  <SidebarMenuButton>Gym Locator</SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarContent>
@@ -99,3 +111,4 @@ export default function Home() {
     </SidebarProvider>
   );
 }
+

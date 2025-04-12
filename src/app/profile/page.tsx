@@ -1,6 +1,6 @@
-import SidebarLayout from "@/components/SidebarLayout";
-
 "use client";
+
+import SidebarLayout from "@/components/SidebarLayout";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -72,3 +72,4 @@ export default function ProfilePage() {
     </SidebarLayout>
   );
 }
+

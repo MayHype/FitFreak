@@ -1,3 +1,5 @@
+'use client';
+
 import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
 import Link from 'next/link';
 import {useEffect, useState} from "react";

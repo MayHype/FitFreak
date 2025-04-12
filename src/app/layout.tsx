@@ -6,12 +6,12 @@ import ClientLayout from './ClientLayout';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
-  subsets: ['latin'],
+  subsets: ['latin', 'greek-ext'],
 });
 
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
-  subsets: ['latin'],
+  subsets: ['latin', 'greek-ext'],
 });
 
 export const metadata: Metadata = {
@@ -25,12 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <ClientLayout geistSansVariable={geistSans.variable} geistMonoVariable={geistMono.variable}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <ClientLayout>
         {children}
         <Toaster/>
       </ClientLayout>
     </html>
   );
 }
+
 

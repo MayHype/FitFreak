@@ -34,20 +34,21 @@ export default function RootLayout({
     }, []);
 
     const bodyContent = (
-        
+        <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <body>
             <SidebarLayout>
                 {children}
                 <Toaster/>
             </SidebarLayout>
-        
-    );
-
-    return (
-        <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <body>
-        {isMounted ? bodyContent : null}
         </body>
         </html>
     );
+
+    return (
+        <>
+        {isMounted ? bodyContent : null}
+        </>
+    );
 }
+
 

@@ -1,6 +1,6 @@
-import SidebarLayout from "@/components/SidebarLayout";
+'use client';
 
-"use client";
+import SidebarLayout from "@/components/SidebarLayout";
 
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

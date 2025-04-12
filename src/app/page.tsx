@@ -32,32 +32,32 @@ export default function Home() {
           <SidebarContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <Link href="/">
+                <Link href="/" passHref>
                   <SidebarMenuButton>Dashboard</SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <Link href="/profile">
+                <Link href="/profile" passHref>
                   <SidebarMenuButton>Profile</SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
-               <Link href="/workout">
+               <Link href="/workout" passHref>
                 <SidebarMenuButton>Workout Plan</SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <Link href="/meal">
+                <Link href="/meal" passHref>
                   <SidebarMenuButton>Meal Plan</SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <Link href="/community">
+                <Link href="/community" passHref>
                   <SidebarMenuButton>Community</SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <Link href="/gym-locator">
+                <Link href="/gym-locator" passHref>
                   <SidebarMenuButton>Gym Locator</SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
@@ -100,7 +100,7 @@ export default function Home() {
                 </div>
               </div>
                <div className="mt-4">
-                <Link href="/profile">
+                <Link href="/profile"  passHref>
                   <Button>View Full Profile</Button>
                 </Link>
               </div>
@@ -111,4 +111,3 @@ export default function Home() {
     </SidebarProvider>
   );
 }
-

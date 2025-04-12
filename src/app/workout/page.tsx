@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import {generateWorkoutPlan, GenerateWorkoutPlanInput, GenerateWorkoutPlanOutput} from '@/ai/flows/generate-workout-plan';
+import { useToast } from "@/hooks/use-toast";
 
 export default function WorkoutPage() {
   const [workoutPlan, setWorkoutPlan] = useState<string | null>(null);
@@ -16,11 +17,13 @@ export default function WorkoutPage() {
     height: 0,
   });
 
+  const { toast } = useToast();
+
    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [id]: value,
+      [id]: id === 'weight' || id === 'height' ? parseFloat(value) : value,
     }));
   };
 
@@ -29,9 +32,18 @@ export default function WorkoutPage() {
     try {
       const workoutPlanResult: GenerateWorkoutPlanOutput = await generateWorkoutPlan(formData);
       setWorkoutPlan(workoutPlanResult.workoutPlan);
+       toast({
+          title: "Workout plan generated",
+          description: "Your personalized workout plan is ready!",
+        });
     } catch (error) {
       console.error("Error generating workout plan:", error);
       setWorkoutPlan("Failed to generate workout plan. Please try again.");
+       toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Failed to generate workout plan. Please try again.",
+        });
     }
   };
 
@@ -89,4 +101,3 @@ export default function WorkoutPage() {
     </div>
   );
 }
-

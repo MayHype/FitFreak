@@ -1,8 +1,10 @@
+
 'use client';
 
 import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
 import Link from 'next/link';
 import {useEffect, useState} from "react";
+import { usePathname } from 'next/navigation';
 
 interface SidebarLayoutProps {
   children: React.ReactNode;
@@ -10,6 +12,7 @@ interface SidebarLayoutProps {
 
 const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
     const [isMounted, setIsMounted] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         setIsMounted(true);
@@ -23,32 +26,32 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
             <SidebarMenu>
               <SidebarMenuItem>
                 <Link href="/" passHref>
-                  <SidebarMenuButton>Dashboard</SidebarMenuButton>
+                  <SidebarMenuButton isActive={pathname === '/'}>Dashboard</SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <Link href="/profile" passHref>
-                  <SidebarMenuButton>Profile</SidebarMenuButton>
+                  <SidebarMenuButton isActive={pathname === '/profile'}>Profile</SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <Link href="/workout" passHref>
-                  <SidebarMenuButton>Workout Plan</SidebarMenuButton>
+                  <SidebarMenuButton isActive={pathname === '/workout'}>Workout Plan</SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <Link href="/meal" passHref>
-                  <SidebarMenuButton>Meal Plan</SidebarMenuButton>
+                  <SidebarMenuButton isActive={pathname === '/meal'}>Meal Plan</SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <Link href="/community" passHref>
-                  <SidebarMenuButton>Community</SidebarMenuButton>
+                  <SidebarMenuButton isActive={pathname === '/community'}>Community</SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <Link href="/gym-locator" passHref>
-                  <SidebarMenuButton>Gym Locator</SidebarMenuButton>
+                  <SidebarMenuButton isActive={pathname === '/gym-locator'}>Gym Locator</SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
                <SidebarMenuItem>

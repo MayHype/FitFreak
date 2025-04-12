@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +7,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background: radial-gradient(circle, hsla(var(--background), 0.8), hsla(var(--background), 1)); /* Themed background */
   transition: background-color 0.3s ease;
+  overflow-x: hidden; /* Prevent horizontal scrolling on smaller screens */
 }
 
 /* Add a more complex and thematic background pattern */
@@ -230,4 +232,10 @@ body::before {
   transform: translateY(0);
 }
 
-
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

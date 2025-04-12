@@ -238,4 +238,16 @@ body::before {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+  .card {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+}
+
+/* Media query for larger screens */
+@media (min-width: 769px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }

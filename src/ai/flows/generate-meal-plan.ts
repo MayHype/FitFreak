@@ -58,7 +58,7 @@ const prompt = ai.definePrompt({
       mealPlan: z.string().describe('A personalized meal plan based on the user input.'),
     }),
   },
-  prompt: `You are a personal trainer and dietician. Based on the user's dietary preferences, fitness goals, weight, height, age, gender, and activity level, generate a personalized meal plan. Provide a day-wise breakdown including breakfast, lunch, dinner and snacks.
+  prompt: `You are a personal trainer and dietician. Based on the user's dietary preferences, fitness goals, weight, height, age, gender, and activity level, generate a personalized meal plan. Present the meal plan in a day-wise breakdown using bullet points for each meal (breakfast, lunch, dinner, snacks).
 
 Dietary Preferences: {{{dietaryPreferences}}}
 Fitness Goals: {{{fitnessGoals}}}
@@ -68,7 +68,42 @@ Age: {{{age}}}
 Gender: {{{gender}}}
 Activity Level: {{{activityLevel}}}
 
-Meal Plan:`,
+Meal Plan:
+* **Monday:**
+    * Breakfast:
+    * Lunch:
+    * Dinner:
+    * Snacks:
+* **Tuesday:**
+    * Breakfast:
+    * Lunch:
+    * Dinner:
+    * Snacks:
+* **Wednesday:**
+    * Breakfast:
+    * Lunch:
+    * Dinner:
+    * Snacks:
+* **Thursday:**
+    * Breakfast:
+    * Lunch:
+    * Dinner:
+    * Snacks:
+* **Friday:**
+    * Breakfast:
+    * Lunch:
+    * Dinner:
+    * Snacks:
+* **Saturday:**
+    * Breakfast:
+    * Lunch:
+    * Dinner:
+    * Snacks:
+* **Sunday:**
+    * Breakfast:
+    * Lunch:
+    * Dinner:
+    * Snacks:`,
 });
 
 const generateMealPlanFlow = ai.defineFlow<

@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function CommunityPage() {
   const [messages, setMessages] = useState<string[]>([]);
@@ -42,6 +43,7 @@ export default function CommunityPage() {
               <div
                 ref={chatContainerRef}
                 className="h-64 overflow-y-auto p-2 border rounded bg-secondary text-secondary-foreground"
+                aria-label="Chat messages"
               >
                 <ScrollArea className="h-full w-full rounded-md border">
                   {messages.map((message, index) => (
@@ -57,9 +59,10 @@ export default function CommunityPage() {
                   placeholder="Type your message here..."
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
-                  className="flex-1 mr-2"
+                  className="flex-1 mr-2 bg-background border-input shadow-sm"
+                  aria-label="Enter your message"
                 />
-                <Button onClick={handleSendMessage}>Send</Button>
+                <Button onClick={handleSendMessage} aria-label="Send message">Send</Button>
               </div>
             </div>
 

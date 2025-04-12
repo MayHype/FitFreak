@@ -4,17 +4,18 @@ import React from 'react';
 
 interface ClientLayoutProps {
   children: React.ReactNode;
+  geistSansVariable: string;
+  geistMonoVariable: string;
 }
 
 const ClientLayout: React.FC<ClientLayoutProps> = ({
   children,
+  geistSansVariable,
+  geistMonoVariable,
 }) => {
   return (
-    <body>
       {children}
-    </body>
   );
 };
 
 export default ClientLayout;
-
